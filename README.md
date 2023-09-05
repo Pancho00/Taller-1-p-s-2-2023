@@ -13,3 +13,10 @@ Description here
 ### Run with default configuration
 
 `npm run start`
+
+ ###  Members 
+ 
+ Francisco Espinosa
+ Pablo Gajardo
+ Matias Paillal
+
