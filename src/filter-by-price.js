@@ -20,16 +20,8 @@ function filterByPrice({ houses, maximumPrice, city }) {
 	XLSX.utils.book_append_sheet(workBook, workSheet, "Houses");
 	XLSX.writeFile(workBook, `./xlsx/${city}.xlsx`);
 	console.log(`${city} XLSX File generated successfully`);
-
 	fileWriter(city,filteredHouses);
 }
 
-const filerHouses=(houses)=>{
-	houses
-	.filter(
-		(house) =>
-			Number(house.priceInCLP.replace("$", "").replace(/\./g, "")) <
-			maximumPrice
-	)
-}
+ 
 export default filterByPrice;
