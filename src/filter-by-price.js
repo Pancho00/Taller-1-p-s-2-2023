@@ -24,4 +24,12 @@ function filterByPrice({ houses, maximumPrice, city }) {
 	fileWriter(city,filteredHouses);
 }
 
+const filerHouses=(houses)=>{
+	houses
+	.filter(
+		(house) =>
+			Number(house.priceInCLP.replace("$", "").replace(/\./g, "")) <
+			maximumPrice
+	)
+}
 export default filterByPrice;

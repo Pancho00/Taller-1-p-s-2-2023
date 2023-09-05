@@ -8,6 +8,7 @@ import fs from "fs";
  */
 
 export default function writeFile(city,arr){
+    console.log("writing json");
     fs.writeFile(
 		`./json/${city}.json`,
 		JSON.stringify(arr),

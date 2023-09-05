@@ -2,6 +2,7 @@ import axios from "axios";
 import { load } from "cheerio";
 import fs from "fs";
 import yargs from "yargs";
+import { APIInicador } from "./utils/global.js";
 
 import fileWriter from "./utils/fileWriter.js";
 import { hideBin } from "yargs/helpers";
@@ -69,7 +70,7 @@ async function getHousesFromWeb() {
 
 //Get houses with the method `getHousesFromWeb`, finally, get the price in CLP and generate the JSON file with the extracted data
 getHousesFromWeb().then(async () => {
-	const { data } = await axios.get("https://mindicador.cl/api");
+	const { data } = await axios.get(APIInicador);
 	const housesWithPriceInCLP = houses.map((house) => {
 		return {
 			...house,
