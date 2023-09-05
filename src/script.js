@@ -9,19 +9,26 @@ import { hideBin } from "yargs/helpers";
 import filterByPrice from "./filter-by-price.js";
 const argv = yargs(hideBin(process.argv)).argv;
 
-const city = argv.location || "temuco-la-araucania";
+const city = argv.location || "temuco-la-araucanpmnia";
 const MAX_pages = argv.maxPages || 1;
+const PER_PAGE = argv.perPage || 50;
+const WEB_URL = `https://www.portalinmobiliario.com/venta/casa/propiedades-usadas/${city}`;
+
 let houses = [];
 let page = 0;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+/**
+ * Gets the houses from the web	page by page and stores them in the houses array
+ * @returns {Promise<number>} The number of the page that was processed
+ */
 async function getHousesFromWeb() {
 	console.log(`Page ${page + 1} of ${MAX_pages}`);
 
 	const response = await axios.get(
-		`https://www.portalinmobiliario.com/venta/casa/propiedades-usadas/${city}/_Desde_${
-			(argv.perPage || 50) * (page + 1)
+		`${WEB_URL}/_Desde_${
+			(PER_PAGE) * (page + 1)
 		}_NoIndex_True`
 	);
 
