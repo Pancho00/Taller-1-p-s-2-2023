@@ -2,6 +2,8 @@ import axios from "axios";
 import { load } from "cheerio";
 import fs from "fs";
 import yargs from "yargs";
+
+import fileWriter from "./utils/fileWriter.js";
 import { hideBin } from "yargs/helpers";
 import filterByPrice from "./filter-by-price.js";
 const argv = yargs(hideBin(process.argv)).argv;
@@ -80,16 +82,7 @@ getHousesFromWeb().then(async () => {
 		};
 	});
 
-	fs.writeFile(
-		`./json/${city}.json`,
-		JSON.stringify(housesWithPriceInCLP),
-		function (err) {
-			if (err) {
-				console.log(err);
-			}
-			console.log(`${city} JSON generated successfully`);
-		}
-	);
+	fileWriter(city,housesWithPriceInCLP);
 
 	if (argv.maximumPrice) {
 		filterByPrice({

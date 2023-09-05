@@ -1,5 +1,5 @@
 import XLSX from "xlsx";
-import fs from "fs";
+import fileWriter from "./utils/fileWriter.js";
 
 function filterByPrice({ houses, maximumPrice, city }) {
 	const filteredHouses = houses
@@ -21,16 +21,7 @@ function filterByPrice({ houses, maximumPrice, city }) {
 	XLSX.writeFile(workBook, `./xlsx/${city}.xlsx`);
 	console.log(`${city} XLSX File generated successfully`);
 
-	fs.writeFile(
-		`./json/${city}.json`,
-		JSON.stringify(filteredHouses),
-		function (err) {
-			if (err) {
-				console.log(err);
-			}
-			console.log(`${city} JSON generated successfully`);
-		}
-	);
+	fileWriter(city,filteredHouses);
 }
 
 export default filterByPrice;
