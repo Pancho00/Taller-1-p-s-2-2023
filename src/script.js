@@ -1,6 +1,5 @@
 import axios from "axios";
 import { load } from "cheerio";
-import fs from "fs";
 import yargs from "yargs";
 import { APIInicador } from "./utils/global.js";
 
